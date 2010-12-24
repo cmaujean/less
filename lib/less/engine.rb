@@ -48,5 +48,11 @@ module Less
     def prepare
       @less.gsub(/\r\n/, "\n").gsub(/\t/, '  ')
     end
+    
+    # Compare the underlying CSS content rather than the default comparison 
+    # of object ids
+    def==(other)
+      self.to_css == other.to_css
+    end
   end
 end

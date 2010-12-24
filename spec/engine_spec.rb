@@ -122,6 +122,23 @@ describe Less::Engine do
     it "should parse a big file"
     it "should handle complex color operations"
   end
+  
+  # why implement equality? Less is good for testing css
+  # related things, and I'd rather have it in the lib, than add it through
+  # decorators or whatever. 
+  describe "==" do
+    it "returns true if the currently contained css is equal" do
+      a = Less::Engine.new('#container { height: 50 + 50px;}')
+      b = Less::Engine.new('#container { height: 50 + 50px;}')
+      a.should == b
+    end
+    
+    it "returns false if the currently contained css is not equal" do
+      a = Less::Engine.new('#container { height: 50 + 50px;}')
+      b = Less::Engine.new('#container { height: 20 + 50px;}')
+      a.should_not == b
+    end
+  end
 end
 
 
