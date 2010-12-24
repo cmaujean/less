@@ -24,7 +24,7 @@ task :test do
 end
 
 begin
-  require 'lib/less'
+  require File.join(File.dirname(__FILE__), %w[lib less])
   require 'benchmark'
 
   task :compile do
